@@ -8,7 +8,9 @@ function App() {
     const fetchUsers = async () => {
       const response = await axios.get('http://localhost:3001/users');
       setUsers(response.data);
-  };
+    };
+    fetchUsers();
+  }, []);
 
   return (
     <div>
