@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function App() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3001/users')
-      .then(res => res.json())
-      .then(data => setUsers(data));
-  }, []);
+    const fetchUsers = async () => {
+      const response = await axios.get('http://localhost:3001/users');
+      setUsers(response.data);
+  };
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div>
       <h1>Users</h1>
       <ul>
         {users.map(user => (
